@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Station Chooser</string>
+    <string name="timetable">Расписание</string>
+    <string name="about">О приложении</string>
+
+    <string name="copyright"> © В. А. Борисов</string>
+    <string name="version">v 1.0</string>
+
+    <string name="from">Отсюда</string>
+    <string name="to">Сюда</string>
+    <string name="search">найти</string>
+    
+    <string name="address">Адрес: </string>
+
+</resources>
