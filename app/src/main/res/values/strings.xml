@@ -8,8 +8,9 @@
 
     <string name="from">Отсюда</string>
     <string name="to">Сюда</string>
+    <string name="date"> Нажмите для установки даты </string>
     <string name="search">Найти</string>
-    
+
     <string name="address">Адрес: </string>
 
 </resources>

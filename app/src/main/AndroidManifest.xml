@@ -20,7 +20,8 @@
         <activity android:name=".AboutActivity" >
         </activity>
 
-        <activity android:name=".ChooserActivity" >
+        <activity android:name=".ChooserActivity"
+            android:windowSoftInputMode="stateHidden">
         </activity>
 
         <activity android:name=".StationListActivity"

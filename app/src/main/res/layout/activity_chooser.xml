@@ -23,9 +23,15 @@
         android:layout_height="wrap_content"
         android:id="@+id/buttonTo" />
 
-    <DatePicker
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:background="@android:color/darker_gray"/>
+
+    <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:text="@string/date"
         android:id="@+id/datePicker" />
 
 

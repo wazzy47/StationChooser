@@ -2,6 +2,7 @@ package ru.tutu.hire.stationchooser;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -10,6 +11,7 @@ public class ChooserActivity extends AppCompatActivity {
 
     private Button buttonFrom;
     private Button buttonTo;
+    private Button date;
     private static final String TAG = "ChooserActivity";
 
     @Override
@@ -34,6 +36,18 @@ public class ChooserActivity extends AppCompatActivity {
                 Intent i = new Intent(ChooserActivity.this, StationListActivity.class);
                 i.putExtra("direction", "citiesTo");
                 startActivityForResult(i, 0);
+            }
+        });
+
+        date = (Button) findViewById(R.id.datePicker);
+        date.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View arg0) {
+
+                DialogFragment newFragment = new SelectDateFragment();
+                newFragment.show(getSupportFragmentManager(), "DatePicker");
+
             }
         });
 
@@ -64,6 +78,7 @@ public class ChooserActivity extends AppCompatActivity {
         // Save "to" and "from"
         savedInstanceState.putString("from", buttonFrom.getText().toString());
         savedInstanceState.putString("to", buttonTo.getText().toString());
+        savedInstanceState.putString("date", date.getText().toString());
 
         super.onSaveInstanceState(savedInstanceState);
     }
@@ -75,6 +90,9 @@ public class ChooserActivity extends AppCompatActivity {
         // Restore button texts
         buttonFrom.setText(savedInstanceState.getString("from"));
         buttonTo.setText(savedInstanceState.getString("to"));
+        date.setText(savedInstanceState.getString("date"));
 
     }
+
+
 }
