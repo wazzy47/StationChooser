@@ -47,7 +47,7 @@ public class StationListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        Toast.makeText(this, "Long tap for additional information", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "Long tap for additional information about the station", Toast.LENGTH_LONG).show();
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_station_list);
