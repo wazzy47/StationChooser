@@ -14,7 +14,6 @@ import android.widget.Toast;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -34,14 +33,10 @@ public class StationListActivity extends AppCompatActivity {
 
     private Button searchButton;
 
-    private ExpandableListView expListView;
-    private ExpandableListAdapter expListAdapter;
-
     private ArrayList<String> listDataHeader;
     private HashMap<String, List<String>> listDataChild;
 
     private String direction;
-    private JSONObject json;
     private ArrayList<ArrayList<JSONObject>> stationsJSON;
 
     @Override
@@ -55,14 +50,18 @@ public class StationListActivity extends AppCompatActivity {
         direction = (String) getIntent().getSerializableExtra("direction");
 
         Button searchButton = (Button) findViewById(R.id.search_button);
-        searchButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                EditText searchField = (EditText) findViewById(R.id.search_view);
-                makeAList(searchField.getText().toString());
-            }
-        });
-
+        try {
+            searchButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    EditText searchField = (EditText) findViewById(R.id.search_view);
+                    makeAList(searchField.getText().toString());
+                }
+            });
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
         makeAList("");
 
     }
@@ -75,7 +74,7 @@ public class StationListActivity extends AppCompatActivity {
             listDataChild = new HashMap<String, List<String>>();
             stationsJSON = new ArrayList<ArrayList<JSONObject>>();
 
-            json = new JSONObject(loadJSONFromAsset());
+            JSONObject json = new JSONObject(loadJSONFromAsset());
             JSONArray cities = json.getJSONArray(direction);
 
             for (int cityIndex=0; cityIndex<cities.length(); ++cityIndex) {
@@ -83,7 +82,7 @@ public class StationListActivity extends AppCompatActivity {
                 JSONArray stations = city.getJSONArray("stations");
 
                 ArrayList<String> stationsArr= new ArrayList<String>();
-                ArrayList<JSONObject> stationsCity = new ArrayList<JSONObject>();
+                ArrayList<JSONObject> stationsCity = new ArrayList<JSONObject>(); //for info about the long-clicked station
 
                 for (int stationIndex=0; stationIndex<stations.length(); ++stationIndex) {
                     JSONObject station = stations.getJSONObject(stationIndex);
@@ -110,9 +109,10 @@ public class StationListActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        expListView = (ExpandableListView) findViewById(R.id.countries_and_cities_list);
-        expListAdapter = new ExpandableListAdapter(this, listDataHeader, listDataChild);
+        ExpandableListView expListView = (ExpandableListView) findViewById(R.id.countries_and_cities_list);
+        ExpandableListAdapter expListAdapter = new ExpandableListAdapter(this, listDataHeader, listDataChild);
         expListView.setAdapter(expListAdapter);
+
         expListView.setOnChildClickListener(
                 new ExpandableListView.OnChildClickListener() {
                     @Override
@@ -157,22 +157,17 @@ public class StationListActivity extends AppCompatActivity {
     }
 
     public String loadJSONFromAsset() {
-        String json = null;
         try {
             InputStream is = getAssets().open("allStations.json");
             int size = is.available();
             byte[] buffer = new byte[size];
-            try {
-                is.read(buffer);
-                is.close();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            json = new String(buffer, "UTF-8");
-        } catch (IOException ex) {
-            ex.printStackTrace();
+            is.read(buffer);
+            is.close();
+            return new String(buffer, "UTF-8");
+        }
+         catch (Exception e) {
+            e.printStackTrace();
             return null;
         }
-        return json;
     }
 }
