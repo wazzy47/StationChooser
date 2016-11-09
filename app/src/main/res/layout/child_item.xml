@@ -7,7 +7,7 @@
         android:id="@+id/station"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="4mm"
+        android:textSize="20sp"
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true" />
 

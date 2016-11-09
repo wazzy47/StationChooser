@@ -7,12 +7,12 @@
         android:id = "@+id/station_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="10mm"/>
+        android:textSize="50sp"/>
 
     <TextView
         android:id = "@+id/address"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="5mm"/>
+        android:textSize="30sp"/>
 
 </LinearLayout>
