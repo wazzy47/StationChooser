@@ -23,7 +23,8 @@
         <activity android:name=".ChooserActivity" >
         </activity>
 
-        <activity android:name=".StationListActivity" >
+        <activity android:name=".StationListActivity" 
+                  android:windowSoftInputMode="stateHidden">
         </activity>
 
         <activity android:name=".StationActivity" >
