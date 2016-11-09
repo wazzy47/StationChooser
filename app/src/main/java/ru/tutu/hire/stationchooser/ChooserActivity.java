@@ -58,4 +58,23 @@ public class ChooserActivity extends AppCompatActivity {
             }
         }
     }
+
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        // Save "to" and "from"
+        savedInstanceState.putString("from", buttonFrom.getText().toString());
+        savedInstanceState.putString("to", buttonTo.getText().toString());
+
+        super.onSaveInstanceState(savedInstanceState);
+    }
+
+    @Override
+    public void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+
+        // Restore button texts
+        buttonFrom.setText(savedInstanceState.getString("from"));
+        buttonTo.setText(savedInstanceState.getString("to"));
+
+    }
 }

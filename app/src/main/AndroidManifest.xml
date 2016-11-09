@@ -23,8 +23,9 @@
         <activity android:name=".ChooserActivity" >
         </activity>
 
-        <activity android:name=".StationListActivity" 
-                  android:windowSoftInputMode="stateHidden">
+        <activity android:name=".StationListActivity"
+            android:windowSoftInputMode="stateHidden"
+            android:screenOrientation="portrait">
         </activity>
 
         <activity android:name=".StationActivity" >
